@@ -1,0 +1,3 @@
+module router_type_5_netlist;
+
+endmodule

@@ -1,0 +1,339 @@
+`timescale 1ns/10ps
+`timescale 1ns/10ps
+module inport(outdatas,
+              out_new_vec,
+              outsent_req_vec,
+              allow_vcs_vec,
+              update_vec,
+              invc_req_nos,
+              ready,
+              indata,
+              in_new,
+              insent_req,
+              invc_no,
+              active_vecs,
+              ready_vec_from_outports,
+              ok_vec_from_outports,
+              invc_nos_from_outports,
+              busies,
+              my_addr,
+              node_links_directions,
+              have_fork_port,
+              have_express_port,
+              rs,
+              clk);
+
+parameter each_cluster_dimension=2;
+parameter cluster_topology=0; //0:Mesh, 1:Torus
+parameter cluster_first_dimension_up_bound=8;
+parameter cluster_second_dimension_up_bound=8;
+parameter cluster_third_dimension_up_bound=5;
+parameter no_clusters=5;
+parameter cluster_first_dimension_no_addr_bits=1;
+parameter cluster_second_dimension_no_addr_bits=1;
+parameter cluster_third_dimension_no_addr_bits=1;
+parameter no_cluster_no_addr_bits=1;
+parameter no_outport=6;
+parameter floorplusone_log2_no_outport=3;
+parameter no_vc=13;
+parameter floorplusone_log2_no_vc=4;
+parameter flit_size=1;                
+parameter floorplusone_log2_flit_size=1;
+parameter phit_size=16;               
+parameter buf_size=4;                 
+parameter floorplusone_log2_buf_size=4;
+parameter switching_method=1;         
+parameter addr_length=10;             
+parameter addr_place_in_header=0;
+parameter portid=0;
+
+output [(no_outport*phit_size)-1:0] outdatas;
+output [(no_outport-1):0] out_new_vec,outsent_req_vec;
+output [(no_outport*no_vc)-1:0] allow_vcs_vec;
+output [(no_outport-1):0] update_vec;
+output [(no_outport*floorplusone_log2_no_vc)-1:0] invc_req_nos;
+output ready;
+input [(phit_size-1):0] indata;
+input in_new,insent_req;
+input [(floorplusone_log2_no_vc-1):0] invc_no;
+input [(no_outport-1):0] active_vecs;
+input [(no_outport-1):0] ready_vec_from_outports;
+input [(no_outport-1):0] ok_vec_from_outports;
+input [(no_outport*floorplusone_log2_no_vc)-1:0] invc_nos_from_outports;
+input [(no_outport*floorplusone_log2_no_vc)-1:0] busies;
+input [(addr_length-1):0] my_addr;
+input [31:0] node_links_directions;
+input have_fork_port,have_express_port;
+input rs,clk;
+
+wire [(no_outport-1):0] ok_vec_from_out_interfaces [(no_outport-1):0];
+wire [(no_outport-1):0] tmp_ok_vec_from_out_interfaces [(no_outport-1):0];
+wire [(no_outport-1):0] all_ok_vec_to_in_interface;
+wire [(no_outport-1):0] ready_vec_from_out_interfaces [(no_outport-1):0];
+wire [(no_outport-1):0] tmp_ready_vec_from_out_interfaces [(no_outport-1):0];
+wire [(no_outport-1):0] all_ready_vec_to_in_interface;
+wire [(no_vc-1):0] handshakes_to_arbiter,rc_dones_to_arbiter,vc_dones_to_arbiter;
+wire [(no_vc-1):0] data_en_from_decoder,rc_ens_from_arbiter,vc_ens_from_arbiter;
+wire [(no_vc-1):0] calls_from_out_interface [(no_outport-1):0];
+wire [(no_outport-1):0] calls_to_in_interface [(no_vc-1):0];
+wire [(no_vc-1):0] news_to_out_interfaces [(no_outport-1):0];
+wire [(no_outport-1):0] news_from_in_interfaces [(no_vc-1):0];
+wire [(no_vc-1):0] sent_reqs_to_out_interfaces [(no_outport-1):0];
+wire [(no_outport-1):0] sent_reqs_from_in_interfaces [(no_vc-1):0];
+wire [(floorplusone_log2_no_vc-1):0] invc_req_no_from_in [(no_outport-1):0];
+wire all_rc_req,rc_valid_from_rc;
+wire [(no_vc-1):0] rc_req_vec;
+wire [(no_outport-1):0] outport_vec_from_rc;
+wire [(no_vc-1):0] allowed_vcs_from_rc;
+wire [(flit_size*phit_size)-1:0] header_from_in_vec [(no_vc-1):0];
+wire [(no_vc-1):0] tmp_header_from_in_vec [(flit_size*phit_size)-1:0];
+wire [(flit_size*phit_size)-1:0] all_header;
+wire [(no_vc-1):0] allowed_vcs [(no_vc-1):0];
+wire [(no_vc-1):0] tmp_allowed_vcs [(no_vc-1):0];
+wire [(no_vc-1):0] all_allowed_vc;
+wire [(floorplusone_log2_no_vc-1):0] invc_reqs [(no_vc-1):0];
+wire [(no_vc-1):0] tmp_invc_reqs [(floorplusone_log2_no_vc-1):0];
+wire [(floorplusone_log2_no_vc-1):0] all_invc_req;
+wire [(no_outport-1):0] outvec_updates [(no_vc-1):0];
+wire [(no_vc-1):0] tmp_outvec_updates [(no_outport-1):0];
+wire [(no_outport-1):0] all_outvec_update;
+wire [(no_outport*phit_size)-1:0] middle_outdatas_from_in [(no_vc-1):0];
+wire [(no_vc*phit_size)-1:0] middle_outdatas_to_out_interface [(no_outport-1):0];
+wire [(no_vc-1):0] pre_full_vec,full_vec;
+
+reg [(floorplusone_log2_no_vc-1):0] invc_no_reg;
+reg [(no_vc-1):0] data_en_from_decoder_reg,data_en_from_decoder_reg_inst;
+
+genvar i,j;
+
+generate for(i=0;i<no_outport;i=i+1) begin: middle_outdatas_to_out_interface_outloop
+  for(j=0;j<no_vc;j=j+1) begin: middle_outdatas_to_out_interface_inloop
+  assign middle_outdatas_to_out_interface[i][((j+1)*phit_size)-1:(j*phit_size)]=
+                                                        middle_outdatas_from_in[j][((i+1)*phit_size)-1:(i*phit_size)];
+       end
+    end
+endgenerate
+
+generate for(i=0;i<no_vc;i=i+1) begin: tmp_allowed_vcs_outloop
+            for(j=0;j<no_vc;j=j+1) begin: tmp_allowed_vcs_inloop
+               assign tmp_allowed_vcs[i][j]= allowed_vcs[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_vc;i=i+1) begin: all_allowed_vc_loop
+            assign all_allowed_vc[i]=|tmp_allowed_vcs[i];
+         end  
+endgenerate
+
+generate for(i=0;i<floorplusone_log2_no_vc;i=i+1) begin: tmp_invc_reqs_outloop
+            for(j=0;j<no_vc;j=j+1) begin: tmp_invc_reqs_inloop
+               assign tmp_invc_reqs[i][j]= invc_reqs[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<floorplusone_log2_no_vc;i=i+1) begin: all_invc_req_loop
+            assign all_invc_req[i]=|tmp_invc_reqs[i];
+         end  
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: tmp_outvec_updates_outloop
+            for(j=0;j<no_vc;j=j+1) begin: tmp_outvec_updates_inloop
+               assign tmp_outvec_updates[i][j]= outvec_updates[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: all_outvec_update_loop
+            assign all_outvec_update[i]=|tmp_outvec_updates[i];
+         end  
+endgenerate
+
+generate for(i=0;i<(flit_size*phit_size);i=i+1) begin: tmp_header_from_in_vec_outloop
+            for(j=0;j<no_vc;j=j+1) begin: tmp_header_from_in_vec_inloop
+               assign tmp_header_from_in_vec[i][j]= header_from_in_vec[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<(flit_size*phit_size);i=i+1) begin: all_header_loop
+            assign all_header[i]=|tmp_header_from_in_vec[i];
+         end  
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: invc_req_no_from_in_loop
+            assign invc_req_no_from_in[i]=
+                   invc_nos_from_outports[((i+1)*floorplusone_log2_no_vc)-1:(i*floorplusone_log2_no_vc)];
+         end  
+endgenerate
+
+generate for(i=0;i<no_vc;i=i+1) begin: calls_to_in_interface_outloop
+            for(j=0;j<no_outport;j=j+1) begin: calls_to_in_interface_inloop
+               assign calls_to_in_interface[i][j]= calls_from_out_interface[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: sent_reqs_to_out_interfaces_outloop
+            for(j=0;j<no_vc;j=j+1) begin: sent_reqs_to_out_interfaces_inloop
+               assign sent_reqs_to_out_interfaces[i][j]= sent_reqs_from_in_interfaces[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: news_to_out_interfaces_outloop
+            for(j=0;j<no_vc;j=j+1) begin: news_to_out_interfaces_inloop
+               assign news_to_out_interfaces[i][j]= news_from_in_interfaces[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: tmp_ok_vec_from_out_interfaces_outloop
+            for(j=0;j<no_outport;j=j+1) begin: tmp_ok_vec_from_out_interfaces_inloop
+               assign tmp_ok_vec_from_out_interfaces[i][j]= ok_vec_from_out_interfaces[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: all_ok_vec_to_in_interface_loop
+            assign all_ok_vec_to_in_interface[i]=|tmp_ok_vec_from_out_interfaces[i];
+         end  
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: tmp_ready_vec_from_out_interfaces_outloop
+            for(j=0;j<no_outport;j=j+1) begin: tmp_ready_vec_from_out_interfaces_inloop
+               assign tmp_ready_vec_from_out_interfaces[i][j]= ready_vec_from_out_interfaces[j][i];
+            end
+         end
+endgenerate
+
+generate for(i=0;i<no_outport;i=i+1) begin: all_ready_vec_to_in_interface_loop
+            assign all_ready_vec_to_in_interface[i]=|tmp_ready_vec_from_out_interfaces[i];
+         end  
+endgenerate
+
+defparam rcvc_arbiter.no_vc=no_vc;
+rcvc_arbiter rcvc_arbiter(rc_ens_from_arbiter,vc_ens_from_arbiter,handshakes_to_arbiter,rc_dones_to_arbiter,
+                                                                                 vc_dones_to_arbiter,rs,clk);
+  
+defparam decoder.no_vc=no_vc;
+defparam decoder.floorplusone_log2_no_vc=floorplusone_log2_no_vc;
+decoder decoder(data_en_from_decoder,invc_no);
+
+defparam routing_computation.each_cluster_dimension=each_cluster_dimension;
+defparam routing_computation.cluster_topology=cluster_topology;
+defparam routing_computation.cluster_first_dimension_up_bound=cluster_first_dimension_up_bound;
+defparam routing_computation.cluster_second_dimension_up_bound=cluster_second_dimension_up_bound;
+defparam routing_computation.cluster_third_dimension_up_bound=cluster_third_dimension_up_bound;
+defparam routing_computation.no_clusters=no_clusters;
+defparam routing_computation.cluster_first_dimension_no_addr_bits=cluster_first_dimension_no_addr_bits;
+defparam routing_computation.cluster_second_dimension_no_addr_bits=cluster_second_dimension_no_addr_bits;
+defparam routing_computation.cluster_third_dimension_no_addr_bits=cluster_third_dimension_no_addr_bits;
+defparam routing_computation.no_cluster_no_addr_bits=no_cluster_no_addr_bits;
+defparam routing_computation.no_outport=no_outport;
+defparam routing_computation.floorplusone_log2_no_outport=floorplusone_log2_no_outport;
+defparam routing_computation.no_vc=no_vc;
+defparam routing_computation.floorplusone_log2_no_vc=floorplusone_log2_no_vc;
+defparam routing_computation.flit_size=flit_size;
+defparam routing_computation.phit_size=phit_size;
+defparam routing_computation.addr_length=addr_length;
+defparam routing_computation.addr_place_in_header=addr_place_in_header;
+defparam routing_computation.portid=portid;
+routing_computation routing_computation(outport_vec_from_rc,
+                                        allowed_vcs_from_rc,
+                                        rc_valid_from_rc,
+                                        all_header,
+                                        all_rc_req,
+                                        busies,
+                                        my_addr,
+                                        node_links_directions,
+                                        have_fork_port,
+                                        have_express_port,
+                                        clk);
+  
+generate for(i=0;i<no_vc;i=i+1) begin: inport_in_interface_loop
+  
+ inport_in_interface #(no_outport,
+                       floorplusone_log2_no_outport,
+                       no_vc,
+                       floorplusone_log2_no_vc,
+                       flit_size,
+                       floorplusone_log2_flit_size,
+                       phit_size,
+                       buf_size,
+                       floorplusone_log2_buf_size,
+                       switching_method,
+                       addr_length,
+                       i)
+ inport_in_interface  (middle_outdatas_from_in[i],
+                       sent_reqs_from_in_interfaces[i],
+                       news_from_in_interfaces[i],
+                       invc_reqs[i],
+                       allowed_vcs[i],
+                       outvec_updates[i],
+                       header_from_in_vec[i],
+                       pre_full_vec[i],
+                       full_vec[i],
+                       rc_req_vec[i],
+                       handshakes_to_arbiter[i],
+                       rc_dones_to_arbiter[i],
+                       vc_dones_to_arbiter[i],
+                       indata,
+                       in_new,
+                       insent_req,
+                       calls_to_in_interface[i],
+                       all_ready_vec_to_in_interface,
+                       all_ok_vec_to_in_interface,
+                       outport_vec_from_rc,
+                       allowed_vcs_from_rc,
+                       rc_valid_from_rc,
+                       data_en_from_decoder_reg_inst[i],
+                       rc_ens_from_arbiter[i],
+                       vc_ens_from_arbiter[i],
+                       rs,
+                       clk);
+      end
+endgenerate
+
+ 
+generate for(i=0;i<no_outport;i=i+1) begin: inport_out_interface_loop
+
+ inport_out_interface #(no_outport,
+                        no_vc,
+                        floorplusone_log2_no_vc,
+                        phit_size,
+                        i)
+ inport_out_interface  (calls_from_out_interface[i],
+                        ok_vec_from_out_interfaces[i],
+                        ready_vec_from_out_interfaces[i],
+                        outdatas[((i+1)*phit_size)-1:(i*phit_size)],
+                        update_vec[i],
+                        invc_req_nos[((i+1)*floorplusone_log2_no_vc)-1:(i*floorplusone_log2_no_vc)],
+                        all_allowed_vc,
+                        out_new_vec[i],outsent_req_vec[i],
+                        ok_vec_from_outports[i],
+                        ready_vec_from_outports[i],
+                        all_invc_req,
+                        allow_vcs_vec[((i+1)*no_vc)-1:(i*no_vc)],
+                        middle_outdatas_to_out_interface[i],
+                        news_to_out_interfaces[i],
+                        sent_reqs_to_out_interfaces[i],
+                        all_outvec_update[i],
+                        invc_req_no_from_in[i],
+                        active_vecs[i],
+                        clk);
+                                                                                                                  
+       end     
+endgenerate 
+
+assign all_rc_req=|rc_req_vec;
+assign ready= ~(pre_full_vec[invc_no_reg] | full_vec[invc_no_reg]);
+
+always@(posedge clk)
+ begin
+  invc_no_reg=invc_no;
+  data_en_from_decoder_reg_inst=data_en_from_decoder_reg;
+  data_en_from_decoder_reg=data_en_from_decoder;
+ end
+endmodule

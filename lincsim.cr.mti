@@ -1,0 +1,406 @@
+{C:/Users/Mahdi/Desktop/Lincsim Code/router_type_0_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_0_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_0_netlist
+
+Top level modules:
+	router_type_0_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/outport_table.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/outport_table.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module outport_table
+
+Top level modules:
+	outport_table
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/outport_mux.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/outport_mux.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module outport_mux
+
+Top level modules:
+	outport_mux
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/manager.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/manager.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module manager
+
+Top level modules:
+	manager
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/decoder.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/decoder.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module decoder
+
+Top level modules:
+	decoder
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_4_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_4_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_4_netlist
+
+Top level modules:
+	router_type_4_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/fork_module.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/fork_module.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module fork_module
+
+Top level modules:
+	fork_module
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/encoder.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/encoder.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module encoder
+
+Top level modules:
+	encoder
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/ones_counter.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/ones_counter.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module ones_counter
+
+Top level modules:
+	ones_counter
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_rightside.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_rightside.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_in_interface_rightside
+
+Top level modules:
+	inport_in_interface_rightside
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/osu018_stdcells.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/osu018_stdcells.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module AND2X1
+-- Compiling module AND2X2
+-- Compiling module AOI21X1
+-- Compiling module AOI22X1
+-- Compiling module BUFX2
+-- Compiling module BUFX4
+-- Compiling module CLKBUF1
+-- Compiling module CLKBUF2
+-- Compiling module CLKBUF3
+-- Compiling module DFFNEGX1
+-- Compiling module DFFPOSX1
+-- Compiling module DFFSR
+-- Compiling module FAX1
+-- Compiling module HAX1
+-- Compiling module INVX1
+-- Compiling module INVX2
+-- Compiling module INVX4
+-- Compiling module INVX8
+-- Compiling module LATCH
+-- Compiling module MUX2X1
+-- Compiling module NAND2X1
+-- Compiling module NAND3X1
+-- Compiling module NOR2X1
+-- Compiling module NOR3X1
+-- Compiling module OAI21X1
+-- Compiling module OAI22X1
+-- Compiling module OR2X1
+-- Compiling module OR2X2
+-- Compiling module TBUFX1
+-- Compiling module TBUFX2
+-- Compiling module XNOR2X1
+-- Compiling module XOR2X1
+-- Compiling UDP udp_dff
+-- Compiling UDP udp_tlat
+-- Compiling UDP udp_rslat
+-- Compiling UDP udp_mux2
+
+Top level modules:
+	AND2X1
+	AND2X2
+	AOI21X1
+	AOI22X1
+	BUFX2
+	BUFX4
+	CLKBUF1
+	CLKBUF2
+	CLKBUF3
+	DFFNEGX1
+	DFFPOSX1
+	DFFSR
+	FAX1
+	HAX1
+	INVX1
+	INVX2
+	INVX4
+	INVX8
+	LATCH
+	MUX2X1
+	NAND2X1
+	NAND3X1
+	NOR2X1
+	NOR3X1
+	OAI21X1
+	OAI22X1
+	OR2X1
+	OR2X2
+	TBUFX1
+	TBUFX2
+	XNOR2X1
+	XOR2X1
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_buf.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_buf.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_in_interface_buf
+
+Top level modules:
+	inport_in_interface_buf
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router
+
+Top level modules:
+	router
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_leftside.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_leftside.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_in_interface_leftside
+
+Top level modules:
+	inport_in_interface_leftside
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/priority_encoder.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/priority_encoder.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module priority_encoder
+
+Top level modules:
+	priority_encoder
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/routing_computation.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/routing_computation.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module routing_computation
+
+Top level modules:
+	routing_computation
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/link_energy.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/link_energy.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module link_energy
+
+Top level modules:
+	link_energy
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/fork_routing_computation.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/fork_routing_computation.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module fork_routing_computation
+
+Top level modules:
+	fork_routing_computation
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport
+
+Top level modules:
+	inport
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_1_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_1_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_1_netlist
+
+Top level modules:
+	router_type_1_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_5_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_5_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_5_netlist
+
+Top level modules:
+	router_type_5_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/Producer_and_consumer.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/Producer_and_consumer.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module producer_and_consumer
+
+Top level modules:
+	producer_and_consumer
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/sv_router.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/sv_router.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module sv_router
+
+Top level modules:
+	sv_router
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/outport.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/outport.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module outport
+
+Top level modules:
+	outport
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/sv_router_pc.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/sv_router_pc.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module sv_router_pc
+
+Top level modules:
+	sv_router_pc
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_in_interface
+
+Top level modules:
+	inport_in_interface
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_rightside_counter.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_rightside_counter.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_in_interface_rightside_counter
+
+Top level modules:
+	inport_in_interface_rightside_counter
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/network.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/network.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module network
+** Note: C:/Users/Mahdi/Desktop/Lincsim Code/network.sv(199): Promoting a concatenation to an assignment pattern.
+** Note: C:/Users/Mahdi/Desktop/Lincsim Code/network.sv(212): Promoting a concatenation to an assignment pattern.
+** Note: C:/Users/Mahdi/Desktop/Lincsim Code/network.sv(210): Promoting a concatenation to an assignment pattern.
+
+Top level modules:
+	network
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_2_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_2_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_2_netlist
+
+Top level modules:
+	router_type_2_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/phit_rec.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/phit_rec.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module phit_rec
+
+Top level modules:
+	phit_rec
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_6_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_6_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_6_netlist
+
+Top level modules:
+	router_type_6_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/fork_router.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/fork_router.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module fork_router
+
+Top level modules:
+	fork_router
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/update_release.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/update_release.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module update_release
+
+Top level modules:
+	update_release
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/simulator_top.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/simulator_top.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module simulator_top
+
+Top level modules:
+	simulator_top
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/fork_inport.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/fork_inport.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module fork_inport
+
+Top level modules:
+	fork_inport
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_updater.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_updater.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_in_interface_updater
+
+Top level modules:
+	inport_in_interface_updater
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/rcvc_arbiter.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/rcvc_arbiter.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module rcvc_arbiter
+
+Top level modules:
+	rcvc_arbiter
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_out_interface.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_out_interface.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module inport_out_interface
+
+Top level modules:
+	inport_out_interface
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_cortex.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_cortex.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_cortex
+
+Top level modules:
+	router_cortex
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/consumer_submodule.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/consumer_submodule.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module consumer_submodule
+
+Top level modules:
+	consumer_submodule
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_3_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_3_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_3_netlist
+
+Top level modules:
+	router_type_3_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_state.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/inport_in_interface_state.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module state
+
+Top level modules:
+	state
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_7_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/router_type_7_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module router_type_7_netlist
+
+Top level modules:
+	router_type_7_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/fork_module_cortex.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/fork_module_cortex.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module fork_module_cortex
+
+Top level modules:
+	fork_module_cortex
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/producer_submodule.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/producer_submodule.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module producer_submodule
+
+Top level modules:
+	producer_submodule
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/counter_on_ones.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/counter_on_ones.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module counter_on_ones
+
+Top level modules:
+	counter_on_ones
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/fork_module_netlist.v} {1 {vlog -work work -vopt {C:/Users/Mahdi/Desktop/Lincsim Code/fork_module_netlist.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module fork_module_netlist
+
+Top level modules:
+	fork_module_netlist
+
+} {} {}} {C:/Users/Mahdi/Desktop/Lincsim Code/sv_fork_module.sv} {1 {vlog -work work -vopt -sv {C:/Users/Mahdi/Desktop/Lincsim Code/sv_fork_module.sv}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module sv_fork_module
+
+Top level modules:
+	sv_fork_module
+
+} {} {}}

@@ -1,0 +1,3 @@
+module router_type_6_netlist;
+
+endmodule
